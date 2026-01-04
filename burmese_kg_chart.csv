@@ -1,0 +1,302 @@
+﻿Sr. No.,Tag,Burmese Name,Marathi,Name,Images
+1,Title,အရောင်များ,अ1यौं2म्या3,Colours,
+2,Description,ဒါကဘာအရောင်လဲ။,दा2ग1बा2अ1यौं2ले³¹13။,What colour is this?,
+3,item,အနီရောင်,अ1नि2यौं2,Red,
+4,item,အပြာ,अ1प्या2,Blue,
+5,item,အဝါရောင်,अ1वा2यौं2,Yellow,
+6,item,အစိမ်းရောင်,अ1झेन23यौं2,Green,
+7,item,လိမ္မော်ရောင်,लि1म्मा1यौं2,Orange,
+8,item,ပန်းရောင်,पं13यौं2,Pink,
+9,item,ခရမ်းရောင်,ख1यं23यौं2,Purple,
+10,item,အညို,अ1ज्ञो2,Brown,
+11,item,အဖြူ,अ1फ्यु2,White,
+12,item,အနက်ရောင်,अ1नेतयौं2,Black,
+13,Title,တိရစ္ဆာန်များ,ति1य1स्साम्या3,Animals,Picture
+14,Description,ဒီတိရစ္ဆာန်ကဘာလဲ။,दि2ति1य1स्साक1बा2ले³¹13။,What is this animal?,
+15,item,ခွေး,ख्वे3,Dog,Picture
+16,item,ကြောင်,चौं2,Cat,Picture
+17,item,ခြင်္သေ့,छिं2दे1,Lion,Picture
+18,item,စာငှက်,सा2ङ्हेत,Sparrow,Picture
+19,item,ယုန်,यों12,Rabbit,Picture
+20,item,ဝက်,वेत,Pig,Picture
+21,item,နွားမ,न्वा3म1,Cow,Picture
+22,item,နွား,न्वा3,Ox,Picture
+23,item,ဆင်,सिन2,Elephant,Picture
+24,item,မြင်း,म्यिन3,Horse,Picture
+25,item,မျောက်,म्यौ?1,Monkey,Picture
+26,item,ဝက်ဝံ,वेतवं32,Bear,Picture
+27,item,သစ်ကုလားအုတ်,थे?2गु1ला3ओट,Giraffe,Picture
+28,Title,သိုး,थोए,Food,Picture
+29,Description,အစားအသောက်,अ1झा3अ1दौ?1,I'll take it.,
+30,item,သုပ်,थोप,Salad,Picture
+31,item,အသားညှပ်ပေါင်မုန့်,अ1दा3जत2बौं2मों11,Sandwich,Picture
+32,item,ဟမ်ဘာဂါ,हं22बा2गा2,Hamburger,Picture
+33,item,အာလူးချောင်းကြော်,आ2लु3छौं3चौ2,French fries,Picture
+34,item,ပီဇာ,पि2जा2,Pizza,Picture
+35,item,ခေါက်ဆွဲ,खौ?1स्वे³¹13,Pasta,Picture
+36,item,မုန့်,मों11,Bread,Picture
+37,item,ထမင်း,थ1मिन3,cooked rice,Picture
+38,item,Couscous,,Couscous,Picture
+39,item,ခေါက်ဆွဲ,खौ?1स्वे³¹13,Pasta,Picture
+40,item,ကြက်ဥ,चेतउ1,Egg,Picture
+41,item,ဒိန်ခဲ,देन12गे³¹13,Cheese,Picture
+42,item,ဒိန်ချဥ်,देन12छिन2,Yogurt,Picture
+43,item,ဝက်ပေါင်ခြောက်,वेतबौं2छौ?1,ham,Picture
+44,item,ဝက်အူချောင်း,वेतउ2छौं3,sausage,Picture
+45,item,ငါး,ङा3,Fish,Picture
+46,item,ကြက်သား,चेतदा3,chicken,Picture
+47,item,ဝက်,वेत,Pig,Picture
+48,item,အမဲသား,अ1मे³¹13दा3,beef,
+49,Title,အသီးအရွက်,अ1दि3अ1य्वेत,Vegetables,Picture
+50,Description,မင်း မစားနိုင်တဲ့ အရာ ရှိလား။,मिन3म1झा3नाइन2दे³¹111अ1या2शि1ला3။,Do you have something you cannot eat,
+51,item,ခရမ်းချဉ်သီး,ख1यं23छ1,Tomato,Picture
+52,item,အာလူး,आ2लु3,Potato,Picture
+53,item,မုန်လာဥနီ,मों12ला2उ1नि2,Carrot,Picture
+54,item,ကြက်သွန်နီ,चेतदुन12नि2,Onion,Picture
+55,item,ဂျပန်ကြက်သွန်မြိတ်,ज1बं12चेतदुन12म्यै1,Japanese leek,Picture
+56,item,မှို,म्हो2,Mushroom,Picture
+57,item,ငရုတ်ပွစိမ်း,ङ1योटप्व1झेन23,Green pepper,Picture
+58,item,မုန်လာဥ,मों12ला2उ1,Radish,Picture
+59,item,ပဲပင်,पे³¹13बिन2,Legume,Picture
+60,item,ဂေါ်ဖီထုပ်,गौ2फि2दोप,Cabbage,Picture
+61,item,Napa ဂေါ်ဖီထုပ်,,Napa cabbage,Picture
+62,item,ဟင်းနုနွယ်ရွက်,हिन3नु1न्वे³¹12य्वेत,Spinach,Picture
+63,item,ဆလတ်ရွက်,स1लत1य्वेत,Lettuce,Picture
+64,item,သခွားသီး,थ1ख्वा3दि3,Cucumber,Picture
+65,item,ရွှေဖရုံသီး,य्हवे2फ1यों22दि3,Pumpkin,Picture
+66,item,ဘရိုကိုလီ,ब1यो2गो2लि2,Broccoli,Picture
+67,Title,သစ်သီးများ,थे?2दि3म्या3,Fruits,Picture
+68,Description,မင်းအကြိုက်ဆုံးအသီးကဘာလဲ။,मिन3अ1चाइझों23अ1दि3ग1बा2ले³¹13။,What is your favorite fruit?,
+69,item,ပန်းသီး,पं13दि3,Apple,Picture
+70,item,သံပယိုသီး,थं32ब1यो2दि3,Lemon,Picture
+71,item,သရက်သီး,थ1येतदि3,Mango,Picture
+72,item,သလဲသီး,थ1ले³¹13दि3,Pomegranate,Picture
+73,item,စတော်ဘယ်ရီ,स1तौ2बे³¹12रि2,Strawberry,Picture
+74,item,လိမ္မော်သီး,लि1म्मा1दि3,Orange,Picture
+75,item,နာနတ်သီး,ना2नत1दि3,Pineapple,Picture
+76,item,သခွားမသီး,थ1ख्वा3म1दि3,Melon,Picture
+77,item,စပျစ်သီး,स1प्ये?2दि3,Grapes,Picture
+78,item,ငှက်ပျောသီး,ङ्हेतप्यौ3दि3,Banana,Picture
+79,item,ချယ်ရီ,चे³¹12रि2,Cherry,Picture
+80,item,မာလကာ,मा2ल1गा2,Guava,Picture
+81,item,ဖရဲသီး,फ1ये³¹13दि3,Watermelon,Picture
+82,item,သစ်တော်သီး,थे?2दौ2दि3,Pear,Picture
+83,item,သဖန်းသီး,थ1फं13दि3,Fig,Picture
+84,item,ကီဝီသီး,कि2वि2दि3,Kiwi,Picture
+85,item,သင်္ဘောသီး,थिं2बौ3दि3,Papaya,Picture
+86,item,အုန်းသီး,ओन13दि3,Coconut,Picture
+87,item,ဂရိတ်ဖရု,ग1यै1फ1यु1,Grapefruit,Picture
+88,Title,မိုဘိုင်း,मो2बाइन3,Transportation,Picture
+89,Description,ဘယ်သွားရမလဲ,बे³¹12थ्वा3य1म1ले³¹13,Where should I go?,
+90,item,ဘတ်စ်ကား,बत1झ1,Bus,Picture
+91,item,ရထား,य1दा3,Train,Picture
+92,item,ကား,का3,Car,Picture
+93,item,လေယာဉ်ပျံ,ले2या2,Airplane,Picture
+94,item,သင်္ဘော,थिं2बौ3,Ship,Picture
+95,item,လှေ,ल्हे2,Boat,Picture
+96,item,ရေငုပ်သင်္ဘော,ये2ङोपदिं2बौ3,Submarine,Picture
+97,item,စက်ဘီး,सेतबि3,Bicycle,Picture
+98,item,မြေအောက်ရထား,म्ये2औतय1दा3,Subway,Picture
+99,item,ဆိုင်ကယ်,साइन2गे³¹12,Motorbike,Picture
+100,item,ရဟတ်ယာဉ်,य1हत1या2,Helicopter,Picture
+101,item,တက္ကစီ,त1क्कसि2,Taxi,Picture
+102,Title,ဈေးဝယ်ထွက်,झे3वे³¹12थ्वेत,Shopping,
+103,Description,တစ်ခုခု ရှာနေတာလား။,ते?2गु1गु1शा2ने2दा2ला3။,Are you looking for something?,
+104,item,လိုက်ရှာနေတယ်။,लाइशा2ने2दे³¹12။,I'm just looking,
+105,item,ပိုကြီးတဲ့တစ်ခုခုများရှိပါသလား,पो2चि3दे³¹111दे?2गु1गु1म्या3शि1बा2द1,Do you have a larger one,
+106,item,ဒီထက်သေးတာရှိသေးလား။,दि2देतदे3दा2शि1दे3ला3။,Is there anything smaller,
+107,item,စမ်းကြည့်လို့ရမလား။,सं23जा1ज्ञ1,Can I try it on,
+108,item,ဘယ်လောက်လဲ,बे³¹12लौ?1ले³¹13,How much is it,
+109,item,ငါ့ကိုလျှော့ပေးနိုင်မလား,ङा2,Can you discount me?,
+110,item,နည်းနည်းပိုမယ်ထင်တယ်။,ने³¹23ने³¹23बो2मे³¹12दिन2दे³¹12။,A little more I think,
+111,item,ဒါကို ယူပါ။,दा2गो2यु2बा2။,Take this,
+112,item,ပြေစာတစ်ခုပေးပါ။,प्ये2झा2दे?2गु1बे3बा2။,Give me a receipt,
+113,item,အဲဒါကို ပြန်ပေးချင်ပါတယ်။,ए³¹13दा2गो2प्यं12बे3छिन2बा2दे³¹12။,I'd like to return it.,
+114,Title,ဟိုတယ်,हो2दे³¹12,Hotel,
+115,Description,အခန်းလွတ်ရှိပါသလား။,अ1गं13लुत1शि1बा2द1ला3။,Is there a vacant room?,
+116,item,ကျွန်တော်ကြိုတင်နေရာယူထားပါတယ်,चुन12दौ2चो2दिन2ने2या2यु2दा3बा2दे³¹12,I have a reservation,
+117,item,လူပျို,लु2प्यो2,Single,
+118,item,နှစ်ချက်,न्हे?2छेत,Double,
+119,item,အမွှာ,अ1म्हवा2,Twin,
+120,item,ငါ နှစ်ရက်နေမယ်။,ङा2न्हे?2येतने2मे³¹12။,I will stay for two days.,
+121,item,တစ်ညဘယ်လောက်လဲ။,ते?2ज्ञ1बे³¹12लौ?1ले³¹13။,How much is it overnight,
+122,item,မနက်စာပါဝင်ပါသလား,म1नेतझा2बा2विन2बा2द1ला3,Is breakfast included,
+123,item,ငွေရှင်းချိန်က ဘယ်နှနာရီလဲ။,ङ्वे2शिन3छेन12ग1बे³¹12न्ह1ना2यि2ले³¹13။,What time is checkout,
+124,item,ရေပူ မရှိပါဘူး,ये2बु2म1शि1बा2बु3,There is no hot water,
+125,item,လေအေးပေးစက် မတွဲပါဘူး။,ले2ए3बे3झेतम1त्वे³¹13बा2बु3။,Air conditioner does not attach,
+126,item,အိမ်သာက မစီးဘူး။,एम2दा2ग1म1झि3बु3။,The toilet does not flow,
+127,item,အခန်းသော့ကို အခန်းထဲမှာ မေ့သွားတယ်။,अ1गं13दौ1गो2अ1गं13दे³¹13म्हा2मे1थ्वा3,I forgot my room key in the room,
+128,item,ငါ့အထုပ်အပိုးကို သိမ်းထားနိုင်မလား။,ङा2,Can you keep my luggage,
+129,item,အခန်းသော့,अ1गं13दौ1,Room key,
+130,item,Wifi စကားဝှက်,,Wifi password,
+131,item,သန့်ရှင်းရေး,थ1न1,Cleaning,
+132,item,သန့်ရှင်းရေးဝန်ဆောင်မှု,थ1न1,Cleaning service,
+133,item,သံ,थं32,Iron,
+134,item,ဓာတ်သတ္တုရေ,धत4द1द1,Mineral water,
+135,item,စောင်,सौं2,Blanket,
+136,item,မျက်နှာသုတ်ပုဝါ,म्येतन्हा2दोटबु1वा2,Towel,
+137,item,လေမှုတ်စက်,ले2म्होटझेत,Dryer,
+138,Title,ခန္ဓာကိုယ်,ख1न1,Body,
+139,Description,ဘယ်နားကနာနေပါလဲ?,बे³¹12ना3ग1ना2ने2बा2ले³¹111,Where does it hurt?,
+140,item,မျက်လုံး,म्येतलों23,Eye,
+141,item,နှာခေါင်း,न्हा2गौं3,nose,
+142,item,ပါးစပ်,पा3झत2,mouth,
+143,item,မျက်နှာ,म्येतन्हा2,face,
+144,item,ဦးခေါင်း,,Head,
+145,item,လည်ပင်း,ले³¹22बिन3,neck,
+146,item,ဆံပင်,सं32बिन2,hair,
+147,item,နား,ना3,ear,
+148,item,သွား,थ्वा3,tooth,
+149,item,ခြေသည်း,छे2दे³¹23,claw,
+150,item,လက်ညှိုး,लेतज्ञ्होए,finger,
+151,item,လက်,लेत,hand,
+152,item,လက်မောင်း,लेतमौं3,arm,
+153,item,ပခုံး,प1गों23,shoulder,
+154,item,ခြေချောင်းများ,छे2छौं3म्या3,Toes,
+155,item,ခြေထောက်များ,छे2दौ?1म्या3,legs,
+156,015_Body,ဗိုက်,बाइ,stomach,
+157,Title,ရက်စွဲ,येतस्वे³¹13,Date,
+158,Description,ဒီနေ့ဘာနေ့ပါလဲ?,दि2ने1बा2ने1बा2ले³¹111,What day is today?,
+159,item,နေ့,ने1,Day,
+160,item,ဒီနေ့,दि2ने1,Today,
+161,item,မနေ့က,म1ने1ग1,Yesterday,
+162,item,မနေ့က,म1ने1ग1,Yesterday,
+163,item,သဘက်ခါ,थ1बेतगा2,Day after tomorrow,
+164,item,မနက်ဖြန်,म1नेतफ्यं12,Tomorrow,
+165,item,တစ်နှစ်,ते?2न्हे?2,Year,
+166,item,လ,ल1,Month,
+167,item,အေးလေ,ए3ले2,Week,
+168,item,တနင်္ဂနွေ,त1निं2ग1न्वे2,Sunday,
+169,item,တနင်္လာနေ့,त1निं2ला2ने1,Monday,
+170,item,အင်္ဂါ,इन122गा2,Tuesday,
+171,item,ဗုဒ္ဓဟူးနေ့,बु1द1,Wednesday,
+172,item,ကြာသပတေးနေ့,चा2द1ब1दे3ने1,Thursday,
+173,item,သောကြာ,थौ3चा2,Friday,
+174,item,စနေနေ့,स1ने2ने1,Saturday,
+175,item,ရာသီဥတု,या2दि2उ1दु1,The season,
+176,item,ဘယ်ရာသီကို ကြိုက်လဲ။,बे³¹12या2दि2गो2चाइले³¹13။,What season do you like?,
+177,item,နွေဦး,न्वे2,Spring,
+178,item,နွေရာသီ,न्वे2या2दि2,Summer,
+179,item,ဆောင်းဦး,सौं3,Autumn,
+180,item,ဆောင်းရာသီ,सौं3या2दि2,Winter,
+181,item,လ,ल1,Month,
+182,item,မင်းဘယ်လမှာမွေးတာလဲ။,मिन3बे³¹12ल1म्हा2म्वे3दा2ले³¹13။,What month were you born?,
+183,item,သင့်မွေးနေ့ဘယ်တော့လဲ?,थिन1म्वे3ने1बे³¹12दौ1ले³¹111,When is your birthday?,
+184,item,ဇန်နဝါရီလ,जं12न1वा2यि2ल1,January,
+185,item,ဖေဖော်ဝါရီ,फे2फौ2वा2यि2,February,
+186,item,မတ်လ,मत1ल1,March,
+187,item,ဧပြီလ,इ1प्यि2ल1,April,
+188,item,မေ,मे2,May,
+189,item,ဇွန်လ,जुन12ल1,June,
+190,item,ဇူလိုင်လ,जु2लाइन2ल1,July,
+191,item,သြဂုတ်လ,थ्य1गोटल1,August,
+192,item,စက်တင်ဘာ,सेतदिन2बा2,September,
+193,item,အောက်တိုဘာလ,औतदो2बा2ल1,October,
+194,item,နိုဝင်ဘာလ,नो2विन2बा2ल1,November,
+195,item,0,,,
+196,Title,မိသားစု,मि1दा3झु1,Family,Picture
+197,Description,ဘယ်သူလဲ?,बे³¹12दु2ले³¹111,Who is it?,
+198,item,ငါ,ङा2,I,Picture
+199,item,ဖေဖေ,फे2फे2,Father,Picture
+200,item,မေမေ,मे2मे2,Mother,Picture
+201,item,0,,,Picture
+202,item,အစ်ကိုအကြီး,आ1को2आ1क्यि3,Elder brother,Picture
+203,item,အစ်မ,अ1मा1,Elder sister,Picture
+204,item,ညီအငယ်,ज्ञि2अ1ङे³¹12,Younger brother,Picture
+205,item,ညီမအငယ်,ज्ञि2म1अ1ङे³¹12,Younger sister,Picture
+206,item,အဖိုး,अ1फोए,Grandfather,Picture
+207,item,အဖွား,अ1फ्वा3,Grandmother,Picture
+208,item,သားတော်,था3दौ2,Son,Picture
+209,item,သမီး,थ1मि3,Daughter,Picture
+210,item,ခင်ပွန်း,खिन2बुन13,Husband,Picture
+211,item,မယား,म1या3,Wife,Picture
+212,Title,ဦးတည်ချက်,,Directions,Picture
+213,Description,ဘူတာရုံက ဘယ်မှာလဲ။,बु2दा2यों22ग1बे³¹12म्हा2ले³¹13။,Where is the bus stop?,
+214,item,ဘတ်စ်ကားမှတ်တိုင်က ဘယ်မှာလဲ။,बत1झ1,bus,Picture
+215,item,ရှေ့တည့်တည့်ကို သွားပါ။,शे1द1ज्ञ1,Go straight ahead,Picture
+216,item,လက်ဝဲဘက်ကွေ့ပါ,लेतवे³¹13बेतक्वे1बा2,Turn left,Picture
+217,item,လက်ယာဘက်ကွေ့ပါ,लेतया2बेतक्वे1बा2,Turn right,
+218,item,မီ,मि2,Before,
+219,item,နောက်ကွယ်,नौ?1क्वे³¹12,Behind,
+220,item,ဘေး,बे3,Next to,
+221,item,လမ်းတစ်ဖက်,लं23दे?2फेत,Across the street,
+222,item,ထောင့်,थौ3ङ1,Corner,
+223,item,ဝဲ,वे³¹13,Left,
+224,item,မှန်တယ်။,म्हं12दे³¹12။,Right,
+225,item,တက်,तेत,Up,
+226,item,ဆင်းတယ်။,सिन3दे³¹12။,Down,
+227,item,မြောက်ဦး,म्यौ?1,North,
+228,item,အရှေ့,अ1शे1,East,
+229,item,အနောက်,अ1नौ?1,West,
+230,Title,ရာသီဥတု,या2दि2उ1दु1,The season,
+231,Description,ရာသီဥတု ဘယ်လိုလဲ။,या2दि2उ1दु1बे³¹12लो2ले³¹13။,How is the weather?,
+232,item,နေသာသည်။,ने2दा2दे³¹22။,Sunny,
+233,item,တိမ်ထူတယ်။,तेन22दु2दे³¹12။,Cloudy,
+234,item,မိုး,मोए,Rain,
+235,item,နှင်း,न्हिन3,Snow,
+236,item,လေတိုက်သည်။,ले2दाइदे³¹22။,Wind,
+237,item,မြူနှင်း,म्यु2न्हिन3,Fog,
+238,item,ပူတယ်။,पु2दे³¹12။,Hot,
+239,item,အေး,ए3,Cold,
+240,item,နွေးထွေးတယ်။,न्वे3थ्वे3दे³¹12။,Warm,
+241,item,အေးတယ်။,ए3दे³¹12။,Cool,
+242,item,ခြောက်သွေ့,छौ?1थ्वे1,Dry,
+243,Title,ဝါသနာ,वा2द1ना2,Hobby,Picture
+244,Description,မင်းရဲ့ဝါသနာကဘာလဲ,मिन3ये³¹111वा2द1ना2ग1बा2ले³¹13,What is your hobby,
+245,item,ဖတ်ရန်,फत1यं12,To read,Picture
+246,item,ချက်ပြုတ်ရန်,छेतप्योटयं12,to cook,Picture
+247,item,ပုံတစ်ခုဆွဲပါ။,पों22दे?2गु1स्वे³¹13बा2။,draw a picture,Picture
+248,item,စန္ဒယားတီးတယ်။,स1न1,play piano,Picture
+249,item,ဂီတတူရိယာတစ်ခုတီးပါ။,गि2द1दु2यि1या2दे?2गु1दि3बा2။,Play a musical instrument,Picture
+250,item,သီချင်းဆို,थि2छिन3झो2,sing,Picture
+251,item,ကခုန်သည်။,क1गों12दे³¹22။,dance,Picture
+252,Title,ပန်းကန်ခွက်ယောက်,पं13गं12ख्वेतयौ?1,Tableware,Picture
+253,Description,0,,,
+254,021_Tableware,အမဲချိတ်,अ1मे³¹13छै1,Fork,
+255,item,ဓား,धा3,Knife,Picture
+256,item,ဇွန်း,जुन13,Spoon,Picture
+257,item,မီးခြစ်,मि3छे?2,Chopsticks,Picture
+258,item,ပန်းကန်,पं13गं12,Dish,Picture
+259,item,ရေယာဉ်,ये2या2,Vessel,Picture
+260,item,ဖန်,फं12,Glass,Picture
+261,item,ဖလား,फ1ला3,Cup,Picture
+262,item,လက်သုတ်ပဝါ,लेतदोटब1वा2,Napkin,Picture
+263,Title,ဟင်းခတ်အနှစ်,हिन3गत1अ1न्हे?2,Seasoning,Picture
+264,Description,ကျေးဇူးပြုပြီး ယူလို့ရမလား။,चे3जु3प्यु1प्यि3यु2लो1य1म1ला3။,Could you please take?,
+265,item,ဆားငန်,सा3ङं12,Salt,Picture
+266,item,ငရုတ်ကောင်း,ङ1योटगौं3,Pepper,Picture
+267,item,သကြား,थ1चा3,Sugar,Picture
+268,item,Mayonnaise,,Mayonnaise,Picture
+269,item,Ketchup,,Ketchup,Picture
+270,item,မုန်ညင်း,मों12ज्ञिन3,Mustard,Picture
+271,item,ဆီ,सि2,Oil,Picture
+272,item,ရှလကာရည်,श1ल1गा2ये³¹22,Vinegar,Picture
+273,item,ယို,यो2,Jam,Picture
+274,item,ဟန်နီ,हं12नि2,Honey,Picture
+275,item,ထောပတ်,थौ3बत1,Butter,Picture
+276,Title,အားကစား,आ3ग1झा3,Sport,Picture
+277,Description,မင်းအားကစားလုပ်နေတာလား။,मिन3आ3ग1झा3लोपने2दा2ला3။,Are you doing sports?,
+278,item,ပြေးသည်။,प्ये3दे³¹22။,Running,Picture
+279,item,စက်ဘီး,सेतबि3,Bicycle,Picture
+280,item,ရေကူးတယ်။,ये2गु3दे³¹12။,Swimming,Picture
+281,item,နှင်းလျှောစီးခြင်း။,न्हिन3ल्य1,Skiings,Picture
+282,item,ဘောလုံး,बौ3लों23,Soccer,Picture
+283,item,ဘတ်စကက်ဘော,बत1झ1गेतबौ3,Basketball,Picture
+284,item,ဘော်လီဘော,बौ2लि2बौ3,Volleyball,Picture
+285,item,ဘေ့စ်ဘော,बे1झ1,Baseball,Picture
+286,item,စားပွဲတင်တင်းနစ်,सा3प्वे³¹13दिन2दिन3ने?2,Table tennis,Picture
+287,item,တင်းနစ်,तिन3ने?2,Tennis,Picture
+288,item,ကြက်တောင်ရိုက်,चेतदौं2याइ,Badminton,Picture
+289,item,တိုက်ခိုက်ရေးအားကစား,ताइगाइये3आ3ग1झा3,Fighting sports,Picture
+290,Title,သောက်ပါ။,थौ?1बा2။,Drink,Picture
+291,Description,သင်ဘာသောက်ချင်ပါသလဲ?,थिन2बा2दौ?1छिन2बा2द1ले³¹111,What would you like to drink?,
+292,item,ရေ,ये2,Water,Picture
+293,item,လိမ္မော်သီးဖျော်ရည်,लि1म1,Orange juice,Picture
+294,item,သစ်သီးဖျော်ရည်,थे?2दि3फ्यौ2ये³¹22,Fruit juice,Picture
+295,item,ကိုလာ,को2ला2,Cola,Picture
+296,item,အချိုရည်,अ1छो2ये³¹22,Soft drink,Picture
+297,item,ဘီယာ,बि2या2,Beer,Picture
+298,item,ဝိုင်,वाइन2,Wine,Picture
+299,item,လက်ဖက်ရည်,लेतफेतये³¹22,Tea,Picture
+300,item,ကော်ဖီ,कौ2फि2,Coffee,Picture
+301,item,ကိုကိုး,को2गोए,Cocoa,Picture
