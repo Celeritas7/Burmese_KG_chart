@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burmese KG Vocabulary Chart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script type="text/babel">
+    const { useState, useEffect, useCallback } = React;
+
+    // Image base path - UPDATE THIS to your GitHub repo structure
+    const IMAGE_BASE_PATH = "./images";
+
+    // Rating definitions
+    const RATINGS = [
+      { id: 1, emoji: '✓', label: 'Monthly Review', description: 'You know this well', color: 'bg-green-500' },
+      { id: 2, emoji: '💬', label: "Can't use in conversation", description: 'Recognition only', color: 'bg-blue-500' },
+      { id: 3, emoji: '✍', label: "Can't write in Burmese", description: 'Speaking but not writing', color: 'bg-yellow-500' },
+      { id: 4, emoji: '🤔', label: "Understand but can't use", description: 'Passive knowledge', color: 'bg-orange-500' },
+      { id: 5, emoji: '❌', label: "Don't know at all", description: 'Need to learn', color: 'bg-red-500' },
+    ];
+
+    // Complete vocabulary data
+    const TOPICS_DATA = {
+      colours: {
+        id: 'colours',
+        title: { burmese: 'အရောင်များ', devanagari: 'अ1यौं2म्या3', english: 'Colours' },
+        description: { burmese: 'ဒါကဘာအရောင်လဲ။', devanagari: 'दा2ग1बा2अ1यौं2ले³¹13။', english: 'What colour is this?' },
+        items: [
+          { id: 'red', burmese: 'အနီရောင်', devanagari: 'अ1नि2यौं2', english: 'Red', colorCode: '#EF4444' },
+          { id: 'blue', burmese: 'အပြာ', devanagari: 'अ1प्या2', english: 'Blue', colorCode: '#3B82F6' },
+          { id: 'yellow', burmese: 'အဝါရောင်', devanagari: 'अ1वा2यौं2', english: 'Yellow', colorCode: '#EAB308' },
+          { id: 'green', burmese: 'အစိမ်းရောင်', devanagari: 'अ1झेन23यौं2', english: 'Green', colorCode: '#22C55E' },
+          { id: 'orange', burmese: 'လိမ္မော်ရောင်', devanagari: 'लि1म्मा1यौं2', english: 'Orange', colorCode: '#F97316' },
+          { id: 'pink', burmese: 'ပန်းရောင်', devanagari: 'पं13यौं2', english: 'Pink', colorCode: '#EC4899' },
+          { id: 'purple', burmese: 'ခရမ်းရောင်', devanagari: 'ख1यं23यौं2', english: 'Purple', colorCode: '#A855F7' },
+          { id: 'brown', burmese: 'အညို', devanagari: 'अ1ज्ञो2', english: 'Brown', colorCode: '#A16207' },
+          { id: 'white', burmese: 'အဖြူ', devanagari: 'अ1फ्यु2', english: 'White', colorCode: '#F8FAFC' },
+          { id: 'black', burmese: 'အနက်ရောင်', devanagari: 'अ1नेतयौं2', english: 'Black', colorCode: '#1E293B' },
+        ]
+      },
+      animals: {
+        id: 'animals',
+        title: { burmese: 'တိရစ္ဆာန်များ', devanagari: 'ति1य1स्साम्या3', english: 'Animals' },
+        description: { burmese: 'ဒီတိရစ္ဆာန်ကဘာလဲ။', devanagari: 'दि2ति1य1स्साक1बा2ले³¹13။', english: 'What is this animal?' },
+        items: [
+          { id: 'dog', burmese: 'ခွေး', devanagari: 'ख्वे3', english: 'Dog', image: 'dog.png' },
+          { id: 'cat', burmese: 'ကြောင်', devanagari: 'चौं2', english: 'Cat', image: 'cat.png' },
+          { id: 'lion', burmese: 'ခြင်္သေ့', devanagari: 'छिं2दे1', english: 'Lion', image: 'lion.png' },
+          { id: 'rabbit', burmese: 'ယုန်', devanagari: 'यों12', english: 'Rabbit', image: 'rabbit.png' },
+          { id: 'pig', burmese: 'ဝက်', devanagari: 'वेत', english: 'Pig', image: 'pig.png' },
+          { id: 'cow', burmese: 'နွားမ', devanagari: 'न्वा3म1', english: 'Cow', image: 'cow.png' },
+          { id: 'elephant', burmese: 'ဆင်', devanagari: 'सिन2', english: 'Elephant', image: 'elephant.png' },
+          { id: 'horse', burmese: 'မြင်း', devanagari: 'म्यिन3', english: 'Horse', image: 'horse.png' },
+          { id: 'monkey', burmese: 'မျောက်', devanagari: 'म्यौ?1', english: 'Monkey', image: 'monkey.png' },
+          { id: 'bear', burmese: 'ဝက်ဝံ', devanagari: 'वेतवं32', english: 'Bear', image: 'bear.png' },
+        ]
+      },
+      fruits: {
+        id: 'fruits',
+        title: { burmese: 'သစ်သီးများ', devanagari: 'थे?2दि3म्या3', english: 'Fruits' },
+        description: { burmese: 'မင်းအကြိုက်ဆုံးအသီးကဘာလဲ။', devanagari: 'मिन3अ1चाइझों23अ1दि3ग1बा2ले³¹13।', english: 'What is your favorite fruit?' },
+        items: [
+          { id: 'apple', burmese: 'ပန်းသီး', devanagari: 'पं13दि3', english: 'Apple', image: 'apple.png' },
+          { id: 'lemon', burmese: 'သံပယိုသီး', devanagari: 'थं32ब1यो2दि3', english: 'Lemon', image: 'lemon.png' },
+          { id: 'mango', burmese: 'သရက်သီး', devanagari: 'थ1येतदि3', english: 'Mango', image: 'mango.png' },
+          { id: 'pomegranate', burmese: 'သလဲသီး', devanagari: 'थ1ले³¹13दि3', english: 'Pomegranate', image: 'pomegranate.png' },
+          { id: 'strawberry', burmese: 'စတော်ဘယ်ရီ', devanagari: 'स1तौ2बे³¹12रि2', english: 'Strawberry', image: 'strawberry.png' },
+          { id: 'orange', burmese: 'လိမ္မော်သီး', devanagari: 'लि1म्मा1दि3', english: 'Orange', image: 'orange.png' },
+          { id: 'pineapple', burmese: 'နာနတ်သီး', devanagari: 'ना2नत1दि3', english: 'Pineapple', image: 'pineapple.png' },
+          { id: 'melon', burmese: 'သခွားမသီး', devanagari: 'थ1ख्वा3म1दि3', english: 'Melon', image: 'melon.png' },
+          { id: 'grapes', burmese: 'စပျစ်သီး', devanagari: 'स1प्ये?2दि3', english: 'Grapes', image: 'grapes.png' },
+          { id: 'banana', burmese: 'ငှက်ပျောသီး', devanagari: 'ङ्हेतप्यौ3दि3', english: 'Banana', image: 'banana.png' },
+          { id: 'cherry', burmese: 'ချယ်ရီ', devanagari: 'चे³¹12रि2', english: 'Cherry', image: 'cherry.png' },
+          { id: 'guava', burmese: 'မာလကာ', devanagari: 'मा2ल1गा2', english: 'Guava', image: 'guava.png' },
+        ]
+      },
+      vegetables: {
+        id: 'vegetables',
+        title: { burmese: 'အသီးအရွက်', devanagari: 'अ1दि3अ1य्वेत', english: 'Vegetables' },
+        description: { burmese: 'မင်း မစားနိုင်တဲ့ အရာ ရှိလား။', devanagari: 'मिन3म1झा3नाइन2दे³¹111अ1या2शि1ला3။', english: 'Do you have something you cannot eat?' },
+        items: [
+          { id: 'tomato', burmese: 'ခရမ်းချဉ်သီး', devanagari: 'ख1यं23छ1', english: 'Tomato', image: 'tomato.png' },
+          { id: 'potato', burmese: 'အာလူး', devanagari: 'आ2लु3', english: 'Potato', image: 'potato.png' },
+          { id: 'carrot', burmese: 'မုန်လာဥနီ', devanagari: 'मों12ला2उ1नि2', english: 'Carrot', image: 'carrot.png' },
+          { id: 'onion', burmese: 'ကြက်သွန်နီ', devanagari: 'चेतदुन12नि2', english: 'Onion', image: 'onion.png' },
+          { id: 'mushroom', burmese: 'မှို', devanagari: 'म्हो2', english: 'Mushroom', image: 'mushroom.png' },
+          { id: 'cabbage', burmese: 'ဂေါ်ဖီထုပ်', devanagari: 'गौ2फि2दोप', english: 'Cabbage', image: 'cabbage.png' },
+          { id: 'cucumber', burmese: 'သခွားသီး', devanagari: 'थ1ख्वा3दि3', english: 'Cucumber', image: 'cucumber.png' },
+          { id: 'broccoli', burmese: 'ဘရိုကိုလီ', devanagari: 'ब1यो2गो2लि2', english: 'Broccoli', image: 'broccoli.png' },
+        ]
+      },
+      food: {
+        id: 'food',
+        title: { burmese: 'အစားအသောက်', devanagari: 'अ1झा3अ1दौ?1', english: 'Food' },
+        description: { burmese: 'အစားအသောက်', devanagari: 'अ1झा3अ1दौ?1', english: "I'll take it." },
+        items: [
+          { id: 'salad', burmese: 'သုပ်', devanagari: 'थोप', english: 'Salad', image: 'salad.png' },
+          { id: 'sandwich', burmese: 'အသားညှပ်ပေါင်မုန့်', devanagari: 'अ1दा3जत2बौं2मों11', english: 'Sandwich', image: 'sandwich.png' },
+          { id: 'hamburger', burmese: 'ဟမ်ဘာဂါ', devanagari: 'हं22बा2गा2', english: 'Hamburger', image: 'hamburger.png' },
+          { id: 'pizza', burmese: 'ပီဇာ', devanagari: 'पि2जा2', english: 'Pizza', image: 'pizza.png' },
+          { id: 'bread', burmese: 'မုန့်', devanagari: 'मों11', english: 'Bread', image: 'bread.png' },
+          { id: 'rice', burmese: 'ထမင်း', devanagari: 'थ1मिन3', english: 'Cooked Rice', image: 'rice.png' },
+          { id: 'egg', burmese: 'ကြက်ဥ', devanagari: 'चेतउ1', english: 'Egg', image: 'egg.png' },
+          { id: 'fish', burmese: 'ငါး', devanagari: 'ङा3', english: 'Fish', image: 'fish.png' },
+          { id: 'chicken', burmese: 'ကြက်သား', devanagari: 'चेतदा3', english: 'Chicken', image: 'chicken.png' },
+        ]
+      },
+      transportation: {
+        id: 'transportation',
+        title: { burmese: 'မိုဘိုင်း', devanagari: 'मो2बाइन3', english: 'Transportation' },
+        description: { burmese: 'ဘယ်သွားရမလဲ', devanagari: 'बे³¹12थ्वा3य1म1ले³¹13', english: 'Where should I go?' },
+        items: [
+          { id: 'bus', burmese: 'ဘတ်စ်ကား', devanagari: 'बत1झ1', english: 'Bus', image: 'bus.png' },
+          { id: 'train', burmese: 'ရထား', devanagari: 'य1दा3', english: 'Train', image: 'train.png' },
+          { id: 'car', burmese: 'ကား', devanagari: 'का3', english: 'Car', image: 'car.png' },
+          { id: 'airplane', burmese: 'လေယာဉ်ပျံ', devanagari: 'ले2या2', english: 'Airplane', image: 'airplane.png' },
+          { id: 'ship', burmese: 'သင်္ဘော', devanagari: 'थिं2बौ3', english: 'Ship', image: 'ship.png' },
+          { id: 'bicycle', burmese: 'စက်ဘီး', devanagari: 'सेतबि3', english: 'Bicycle', image: 'bicycle.png' },
+          { id: 'taxi', burmese: 'တက္ကစီ', devanagari: 'त1क्कसि2', english: 'Taxi', image: 'taxi.png' },
+        ]
+      },
+      family: {
+        id: 'family',
+        title: { burmese: 'မိသားစု', devanagari: 'मि1दा3झु1', english: 'Family' },
+        description: { burmese: 'ဘယ်သူလဲ?', devanagari: 'बे³¹12दु2ले³¹111', english: 'Who is it?' },
+        items: [
+          { id: 'father', burmese: 'ဖေဖေ', devanagari: 'फे2फे2', english: 'Father', image: 'father.png' },
+          { id: 'mother', burmese: 'မေမေ', devanagari: 'मे2मे2', english: 'Mother', image: 'mother.png' },
+          { id: 'elder-brother', burmese: 'အစ်ကိုအကြီး', devanagari: 'आ1को2आ1क्यि3', english: 'Elder brother', image: 'elder-brother.png' },
+          { id: 'elder-sister', burmese: 'အစ်မ', devanagari: 'अ1मा1', english: 'Elder sister', image: 'elder-sister.png' },
+          { id: 'grandfather', burmese: 'အဖိုး', devanagari: 'अ1फोए', english: 'Grandfather', image: 'grandfather.png' },
+          { id: 'grandmother', burmese: 'အဖွား', devanagari: 'अ1फ्वा3', english: 'Grandmother', image: 'grandmother.png' },
+        ]
+      },
+      body: {
+        id: 'body',
+        title: { burmese: 'ခန္ဓာကိုယ်', devanagari: 'ख1न1', english: 'Body' },
+        description: { burmese: 'ဘယ်နားကနာနေပါလဲ?', devanagari: 'बे³¹12ना3ग1ना2ने2बा2ले³¹111', english: 'Where does it hurt?' },
+        items: [
+          { id: 'eye', burmese: 'မျက်လုံး', devanagari: 'म्येतलों23', english: 'Eye', image: 'eye.png' },
+          { id: 'nose', burmese: 'နှာခေါင်း', devanagari: 'न्हा2गौं3', english: 'Nose', image: 'nose.png' },
+          { id: 'mouth', burmese: 'ပါးစပ်', devanagari: 'पा3झत2', english: 'Mouth', image: 'mouth.png' },
+          { id: 'ear', burmese: 'နား', devanagari: 'ना3', english: 'Ear', image: 'ear.png' },
+          { id: 'hand', burmese: 'လက်', devanagari: 'लेत', english: 'Hand', image: 'hand.png' },
+          { id: 'legs', burmese: 'ခြေထောက်များ', devanagari: 'छे2दौ?1म्या3', english: 'Legs', image: 'legs.png' },
+        ]
+      },
+      drinks: {
+        id: 'drinks',
+        title: { burmese: 'သောက်ပါ။', devanagari: 'थौ?1बा2।', english: 'Drinks' },
+        description: { burmese: 'သင်ဘာသောက်ချင်ပါသလဲ?', devanagari: 'थिन2बा2दौ?1छिन2बा2द1ले³¹111', english: 'What would you like to drink?' },
+        items: [
+          { id: 'water', burmese: 'ရေ', devanagari: 'ये2', english: 'Water', image: 'water.png' },
+          { id: 'tea', burmese: 'လက်ဖက်ရည်', devanagari: 'लेतफेतये³¹22', english: 'Tea', image: 'tea.png' },
+          { id: 'coffee', burmese: 'ကော်ဖီ', devanagari: 'कौ2फि2', english: 'Coffee', image: 'coffee.png' },
+          { id: 'cola', burmese: 'ကိုလာ', devanagari: 'को2ला2', english: 'Cola', image: 'cola.png' },
+          { id: 'beer', burmese: 'ဘီယာ', devanagari: 'बि2या2', english: 'Beer', image: 'beer.png' },
+        ]
+      },
+    };
+
+    // Helper functions
+    const getImageUrl = (topicId, imageName) => {
+      if (!imageName) return null;
+      if (imageName.startsWith('http')) return imageName;
+      return `${IMAGE_BASE_PATH}/${topicId}/${imageName}`;
+    };
+
+    const STORAGE_KEY = 'kg_chart_ratings';
+    const loadRatings = () => {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? JSON.parse(saved) : {};
+      } catch { return {}; }
+    };
+    const saveRatings = (ratings) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(ratings));
+    };
+
+    // Topic Navigation Component
+    const TopicNav = ({ topics, activeTopic, onSelect }) => (
+      <div className="bg-white border-b sticky top-0 z-40 shadow-sm">
+        <div className="max-w-7xl mx-auto px-2">
+          <div className="flex overflow-x-auto py-2 gap-1 scrollbar-hide">
+            {Object.values(topics).map((topic) => (
+              <button
+                key={topic.id}
+                onClick={() => onSelect(topic.id)}
+                className={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+                  activeTopic === topic.id
+                    ? 'bg-green-600 text-white shadow-md'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {topic.title.english}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+
+    // Chart Header Component
+    const ChartHeader = ({ topic }) => (
+      <div className="border-2 border-gray-800 mb-0 bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 min-h-20">
+          <div className="border-b md:border-b-0 md:border-r border-gray-800 bg-gradient-to-r from-green-800 to-green-700 p-3 flex items-center justify-center">
+            <div className="text-3xl">🍎🍌🍇🍊🍋</div>
+          </div>
+          <div className="border-b md:border-b-0 md:border-r border-gray-800 p-3 flex flex-col justify-center items-center">
+            <div className="text-xl font-bold text-gray-800" style={{ fontFamily: 'Padauk, Myanmar Text, sans-serif' }}>
+              {topic.title.burmese}
+            </div>
+            <div className="text-lg text-blue-700 mt-1" style={{ fontFamily: 'Noto Sans Devanagari, sans-serif' }}>
+              {topic.title.devanagari}
+            </div>
+          </div>
+          <div className="border-b md:border-b-0 md:border-r border-gray-800 p-3 flex items-center justify-center">
+            <div className="text-sm text-center font-medium text-gray-700">
+              {topic.description.english}
+            </div>
+          </div>
+          <div className="p-3 flex flex-col justify-center items-center">
+            <div className="text-sm text-red-700 text-center" style={{ fontFamily: 'Padauk, Myanmar Text, sans-serif' }}>
+              {topic.description.burmese}
+            </div>
+            <div className="text-xs text-red-600 text-center mt-1" style={{ fontFamily: 'Noto Sans Devanagari, sans-serif' }}>
+              {topic.description.devanagari}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
+    // Vocabulary Cell Component
+    const VocabCell = ({ item, topic, rating, onRate, onShowDetail, showEnglish }) => {
+      const [imageError, setImageError] = useState(false);
+      const currentRating = RATINGS.find(r => r.id === rating);
+
+      return (
+        <div 
+          className="border border-gray-400 bg-white relative group cursor-pointer hover:shadow-lg transition-shadow"
+          onClick={() => onShowDetail(item)}
+        >
+          {currentRating && (
+            <div className={`absolute top-1 right-1 w-6 h-6 rounded-full ${currentRating.color} text-white text-xs flex items-center justify-center z-10 shadow`}>
+              {currentRating.emoji}
+            </div>
+          )}
+
+          <div className="aspect-square p-2 flex items-center justify-center bg-white border-b border-gray-300">
+            {item.colorCode ? (
+              <div className="w-14 h-14 rounded-lg border-2 border-gray-300" style={{ backgroundColor: item.colorCode }} />
+            ) : imageError || !item.image ? (
+              <div className="text-4xl">📷</div>
+            ) : (
+              <img
+                src={getImageUrl(topic.id, item.image)}
+                alt={item.english}
+                className="max-w-full max-h-full object-contain"
+                onError={() => setImageError(true)}
+              />
+            )}
+          </div>
+
+          <div className="p-2 border-b border-gray-200">
+            <div className="text-center text-base font-medium text-gray-800" style={{ fontFamily: 'Padauk, Myanmar Text, sans-serif' }}>
+              {item.burmese}
+            </div>
+          </div>
+
+          <div className="p-2 bg-gray-50">
+            <div className="text-center text-sm text-blue-700" style={{ fontFamily: 'Noto Sans Devanagari, sans-serif' }}>
+              {item.devanagari}
+            </div>
+            {showEnglish && (
+              <div className="text-center text-xs text-gray-500 mt-1">{item.english}</div>
+            )}
+          </div>
+
+          <div className="absolute bottom-0 left-0 right-0 bg-white/95 border-t border-gray-300 p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex justify-center gap-1">
+              {RATINGS.map((r) => (
+                <button
+                  key={r.id}
+                  onClick={(e) => { e.stopPropagation(); onRate(item.id, r.id); }}
+                  className={`w-5 h-5 rounded text-xs hover:scale-110 transition-transform ${rating === r.id ? r.color + ' text-white' : 'bg-gray-200'}`}
+                  title={r.label}
+                >
+                  {r.emoji}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Vocabulary Grid Component
+    const VocabGrid = ({ topic, ratings, onRate, onShowDetail, showEnglish }) => (
+      <div className="border-2 border-gray-800 border-t-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {topic.items.map((item) => (
+            <VocabCell
+              key={item.id}
+              item={item}
+              topic={topic}
+              rating={ratings[`${topic.id}-${item.id}`]}
+              onRate={(itemId, ratingId) => onRate(`${topic.id}-${itemId}`, ratingId)}
+              onShowDetail={onShowDetail}
+              showEnglish={showEnglish}
+            />
+          ))}
+        </div>
+      </div>
+    );
+
+    // Detail Modal Component
+    const DetailModal = ({ item, topic, rating, onRate, onClose }) => {
+      const [imageError, setImageError] = useState(false);
+      
+      return (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50" onClick={onClose}>
+          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl" onClick={e => e.stopPropagation()}>
+            <div className="text-center">
+              <div className="w-32 h-32 mx-auto mb-4 flex items-center justify-center bg-gray-50 rounded-xl border">
+                {item.colorCode ? (
+                  <div className="w-24 h-24 rounded-xl" style={{ backgroundColor: item.colorCode }} />
+                ) : imageError || !item.image ? (
+                  <div className="text-5xl">📷</div>
+                ) : (
+                  <img
+                    src={getImageUrl(topic.id, item.image)}
+                    alt={item.english}
+                    className="max-w-full max-h-full object-contain"
+                    onError={() => setImageError(true)}
+                  />
+                )}
+              </div>
+
+              <h2 className="text-3xl font-bold text-gray-800 mb-2" style={{ fontFamily: 'Padauk, Myanmar Text, sans-serif' }}>
+                {item.burmese}
+              </h2>
+              <div className="text-2xl text-blue-700 mb-2" style={{ fontFamily: 'Noto Sans Devanagari, sans-serif' }}>
+                {item.devanagari}
+              </div>
+              <div className="text-xl text-gray-600 mb-6">{item.english}</div>
+
+              <div className="mb-6">
+                <div className="text-sm text-gray-500 mb-3">Rate your knowledge:</div>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {RATINGS.map((r) => (
+                    <button
+                      key={r.id}
+                      onClick={() => onRate(`${topic.id}-${item.id}`, r.id)}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                        rating === r.id ? r.color + ' text-white shadow-md' : 'bg-gray-100 hover:bg-gray-200'
+                      }`}
+                    >
+                      {r.emoji} {r.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <button onClick={onClose} className="px-8 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Quiz Component
+    const QuizSection = ({ topics, ratings, onRate }) => {
+      const [quizTopic, setQuizTopic] = useState('all');
+      const [currentQuestion, setCurrentQuestion] = useState(null);
+      const [options, setOptions] = useState([]);
+      const [selectedAnswer, setSelectedAnswer] = useState(null);
+      const [score, setScore] = useState({ correct: 0, total: 0 });
+      const [showResult, setShowResult] = useState(false);
+
+      const getAllItems = useCallback(() => {
+        if (quizTopic === 'all') {
+          return Object.values(topics).flatMap(t => t.items.map(i => ({ ...i, topicId: t.id, topic: t })));
+        }
+        const topic = topics[quizTopic];
+        return topic ? topic.items.map(i => ({ ...i, topicId: topic.id, topic })) : [];
+      }, [quizTopic, topics]);
+
+      const generateQuestion = useCallback(() => {
+        const items = getAllItems();
+        if (items.length < 4) return;
+
+        const questionItem = items[Math.floor(Math.random() * items.length)];
+        const wrongOptions = items.filter(i => i.id !== questionItem.id).sort(() => Math.random() - 0.5).slice(0, 3);
+        const allOptions = [questionItem, ...wrongOptions].sort(() => Math.random() - 0.5);
+
+        setCurrentQuestion(questionItem);
+        setOptions(allOptions);
+        setSelectedAnswer(null);
+        setShowResult(false);
+      }, [getAllItems]);
+
+      useEffect(() => { generateQuestion(); }, [quizTopic, generateQuestion]);
+
+      const handleAnswer = (item) => {
+        if (showResult) return;
+        setSelectedAnswer(item);
+        setShowResult(true);
+        const isCorrect = item.id === currentQuestion.id;
+        setScore(prev => ({ correct: prev.correct + (isCorrect ? 1 : 0), total: prev.total + 1 }));
+        if (!isCorrect) onRate(`${currentQuestion.topicId}-${currentQuestion.id}`, 5);
+      };
+
+      if (!currentQuestion) return <div className="text-center py-8">Loading...</div>;
+
+      return (
+        <div className="max-w-4xl mx-auto p-4">
+          <div className="bg-white rounded-xl shadow-md p-4 mb-6">
+            <div className="flex flex-wrap gap-4 items-center justify-between">
+              <select value={quizTopic} onChange={(e) => { setQuizTopic(e.target.value); setScore({ correct: 0, total: 0 }); }} className="px-4 py-2 border rounded-lg bg-white">
+                <option value="all">All Topics</option>
+                {Object.values(topics).map(t => <option key={t.id} value={t.id}>{t.title.english}</option>)}
+              </select>
+              <div className="bg-yellow-100 px-4 py-2 rounded-full font-bold text-yellow-800">
+                Score: {score.correct}/{score.total} {score.total > 0 && `(${Math.round(score.correct/score.total*100)}%)`}
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div className="text-center text-gray-500 mb-4">Find the matching image:</div>
+            <div className="text-center">
+              <div className="text-4xl font-bold mb-2" style={{ fontFamily: 'Padauk, Myanmar Text, sans-serif' }}>{currentQuestion.burmese}</div>
+              <div className="text-2xl text-blue-700" style={{ fontFamily: 'Noto Sans Devanagari, sans-serif' }}>{currentQuestion.devanagari}</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            {options.map((opt) => {
+              const [error, setError] = useState(false);
+              let borderClass = 'border-gray-300';
+              if (showResult && opt.id === currentQuestion.id) borderClass = 'border-green-500 border-4 bg-green-50';
+              if (showResult && selectedAnswer?.id === opt.id && opt.id !== currentQuestion.id) borderClass = 'border-red-500 border-4 bg-red-50';
+
+              return (
+                <div key={opt.id} onClick={() => handleAnswer(opt)} className={`p-4 rounded-xl border-2 ${borderClass} cursor-pointer hover:shadow-lg transition-all`}>
+                  <div className="w-20 h-20 mx-auto flex items-center justify-center">
+                    {opt.colorCode ? (
+                      <div className="w-14 h-14 rounded-lg" style={{ backgroundColor: opt.colorCode }} />
+                    ) : error || !opt.image ? (
+                      <div className="text-3xl">📷</div>
+                    ) : (
+                      <img src={getImageUrl(opt.topicId, opt.image)} alt="" className="max-w-full max-h-full object-contain" onError={() => setError(true)} />
+                    )}
+                  </div>
+                  <div className="text-center mt-2 text-xs text-gray-500">{opt.english}</div>
+                </div>
+              );
+            })}
+          </div>
+
+          {showResult && (
+            <div className="text-center">
+              <div className={`text-2xl font-bold mb-4 ${selectedAnswer?.id === currentQuestion.id ? 'text-green-600' : 'text-red-600'}`}>
+                {selectedAnswer?.id === currentQuestion.id ? '✅ Correct!' : `❌ Wrong! It was "${currentQuestion.english}"`}
+              </div>
+              <button onClick={generateQuestion} className="px-8 py-3 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition">
+                Next Question →
+              </button>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    // Flashcard Component
+    const FlashcardSection = ({ topics, ratings, onRate }) => {
+      const [selectedTopic, setSelectedTopic] = useState('fruits');
+      const [currentIndex, setCurrentIndex] = useState(0);
+      const [isFlipped, setIsFlipped] = useState(false);
+      const [imageError, setImageError] = useState(false);
+
+      const topic = topics[selectedTopic];
+      const items = topic?.items || [];
+      const currentItem = items[currentIndex];
+
+      useEffect(() => { setImageError(false); }, [currentItem]);
+
+      const goNext = () => { setIsFlipped(false); setCurrentIndex((prev) => (prev + 1) % items.length); };
+      const goPrev = () => { setIsFlipped(false); setCurrentIndex((prev) => (prev - 1 + items.length) % items.length); };
+      const goRandom = () => { setIsFlipped(false); setCurrentIndex(Math.floor(Math.random() * items.length)); };
+      const handleRate = (ratingId) => { onRate(`${topic.id}-${currentItem.id}`, ratingId); goNext(); };
+
+      const currentRating = ratings[`${topic.id}-${currentItem?.id}`];
+
+      if (!currentItem) return null;
+
+      return (
+        <div className="max-w-2xl mx-auto p-4">
+          <div className="bg-white rounded-xl shadow-md p-4 mb-6">
+            <div className="flex flex-wrap gap-4 items-center justify-between">
+              <select value={selectedTopic} onChange={(e) => { setSelectedTopic(e.target.value); setCurrentIndex(0); setIsFlipped(false); }} className="px-4 py-2 border rounded-lg bg-white">
+                {Object.values(topics).map(t => <option key={t.id} value={t.id}>{t.title.english}</option>)}
+              </select>
+              <div className="text-gray-600 font-medium">{currentIndex + 1} / {items.length}</div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 min-h-80 flex flex-col items-center justify-center cursor-pointer transition-all hover:shadow-2xl relative" onClick={() => setIsFlipped(!isFlipped)}>
+            {currentRating && (
+              <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-sm ${RATINGS.find(r => r.id === currentRating)?.color} text-white`}>
+                {RATINGS.find(r => r.id === currentRating)?.emoji} {RATINGS.find(r => r.id === currentRating)?.label}
+              </div>
+            )}
+
+            {!isFlipped ? (
+              <>
+                <div className="text-4xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Padauk, Myanmar Text, sans-serif' }}>{currentItem.burmese}</div>
+                <div className="text-2xl text-blue-700" style={{ fontFamily: 'Noto Sans Devanagari, sans-serif' }}>{currentItem.devanagari}</div>
+                <div className="mt-8 text-gray-400 text-sm">Tap to reveal</div>
+              </>
+            ) : (
+              <>
+                <div className="w-28 h-28 mb-4 flex items-center justify-center">
+                  {currentItem.colorCode ? (
+                    <div className="w-20 h-20 rounded-xl" style={{ backgroundColor: currentItem.colorCode }} />
+                  ) : imageError || !currentItem.image ? (
+                    <div className="text-5xl">📷</div>
+                  ) : (
+                    <img src={getImageUrl(topic.id, currentItem.image)} alt={currentItem.english} className="max-w-full max-h-full object-contain" onError={() => setImageError(true)} />
+                  )}
+                </div>
+                <div className="text-2xl font-bold text-gray-800">{currentItem.english}</div>
+              </>
+            )}
+          </div>
+
+          <div className="flex justify-center gap-3 mb-6">
+            <button onClick={goPrev} className="px-5 py-2 bg-gray-200 rounded-full hover:bg-gray-300 transition font-medium">← Prev</button>
+            <button onClick={goRandom} className="px-5 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition font-medium">🎲 Random</button>
+            <button onClick={goNext} className="px-5 py-2 bg-gray-200 rounded-full hover:bg-gray-300 transition font-medium">Next →</button>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-md p-4">
+            <div className="text-center text-sm text-gray-500 mb-3">How well do you know this?</div>
+            <div className="flex flex-wrap justify-center gap-2">
+              {RATINGS.map((r) => (
+                <button key={r.id} onClick={() => handleRate(r.id)} className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${currentRating === r.id ? r.color + ' text-white shadow-md' : 'bg-gray-100 hover:bg-gray-200'}`}>
+                  {r.emoji} {r.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Progress Component
+    const ProgressSection = ({ topics, ratings }) => {
+      let totalItems = 0, ratedItems = 0;
+      const stats = {};
+
+      Object.values(topics).forEach(topic => {
+        stats[topic.id] = { total: topic.items.length, ratings: {} };
+        RATINGS.forEach(r => { stats[topic.id].ratings[r.id] = 0; });
+        topic.items.forEach(item => {
+          totalItems++;
+          const rating = ratings[`${topic.id}-${item.id}`];
+          if (rating) { stats[topic.id].ratings[rating]++; ratedItems++; }
+        });
+      });
+
+      return (
+        <div className="max-w-4xl mx-auto p-4">
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4">Overall Progress</h2>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="flex-1 bg-gray-200 rounded-full h-6">
+                <div className="bg-green-500 h-6 rounded-full transition-all flex items-center justify-center text-white text-sm font-bold" style={{ width: `${Math.max((ratedItems/totalItems)*100, 5)}%` }}>
+                  {Math.round((ratedItems/totalItems)*100)}%
+                </div>
+              </div>
+            </div>
+            <p className="text-gray-600">{ratedItems} of {totalItems} items rated</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h3 className="text-lg font-bold mb-4">Rating Legend</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {RATINGS.map(r => (
+                <div key={r.id} className={`p-3 rounded-lg ${r.color} text-white`}>
+                  <span className="text-xl mr-2">{r.emoji}</span>
+                  <span className="font-medium">{r.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-lg font-bold mb-4">Progress by Topic</h3>
+            <div className="space-y-4">
+              {Object.values(topics).map(topic => {
+                const topicStats = stats[topic.id];
+                const rated = Object.values(topicStats.ratings).reduce((a, b) => a + b, 0);
+                return (
+                  <div key={topic.id} className="border-b pb-4 last:border-b-0">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-medium">{topic.title.english}</span>
+                      <span className="text-sm text-gray-500">{rated}/{topicStats.total}</span>
+                    </div>
+                    <div className="flex h-4 rounded-full overflow-hidden bg-gray-200">
+                      {RATINGS.map(r => {
+                        const count = topicStats.ratings[r.id];
+                        const percent = (count / topicStats.total) * 100;
+                        return percent > 0 ? <div key={r.id} className={r.color} style={{ width: `${percent}%` }} title={`${r.label}: ${count}`} /> : null;
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Main App Component
+    const App = () => {
+      const [activeView, setActiveView] = useState('chart');
+      const [activeTopic, setActiveTopic] = useState('fruits');
+      const [showEnglish, setShowEnglish] = useState(true);
+      const [ratings, setRatings] = useState(loadRatings);
+      const [selectedItem, setSelectedItem] = useState(null);
+
+      useEffect(() => { saveRatings(ratings); }, [ratings]);
+
+      const handleRate = (key, ratingId) => { setRatings(prev => ({ ...prev, [key]: ratingId })); };
+
+      const currentTopic = TOPICS_DATA[activeTopic];
+
+      return (
+        <div className="min-h-screen bg-gray-100">
+          <header className="bg-gradient-to-r from-green-700 to-green-800 text-white py-4 px-4 shadow-lg">
+            <div className="max-w-7xl mx-auto">
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                  <h1 className="text-xl md:text-2xl font-bold">Burmese KG Vocabulary Chart</h1>
+                  <p className="text-green-200 text-sm">Burmese • Devanagari • English</p>
+                </div>
+                <div className="flex gap-2 flex-wrap">
+                  {[
+                    { id: 'chart', icon: '📊', label: 'Chart' },
+                    { id: 'quiz', icon: '🎯', label: 'Quiz' },
+                    { id: 'flashcard', icon: '🃏', label: 'Cards' },
+                    { id: 'progress', icon: '📈', label: 'Progress' },
+                  ].map(view => (
+                    <button key={view.id} onClick={() => setActiveView(view.id)} className={`px-3 py-2 rounded-lg font-medium transition-all text-sm ${activeView === view.id ? 'bg-white text-green-700 shadow' : 'bg-green-600 text-white hover:bg-green-500'}`}>
+                      {view.icon} {view.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {activeView === 'chart' && <TopicNav topics={TOPICS_DATA} activeTopic={activeTopic} onSelect={setActiveTopic} />}
+
+          {activeView === 'chart' && (
+            <div className="bg-white border-b px-4 py-2">
+              <div className="max-w-7xl mx-auto">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={showEnglish} onChange={(e) => setShowEnglish(e.target.checked)} className="w-4 h-4" />
+                  <span className="text-sm text-gray-700">Show English labels</span>
+                </label>
+              </div>
+            </div>
+          )}
+
+          <main className="pb-8">
+            {activeView === 'chart' && currentTopic && (
+              <div className="max-w-7xl mx-auto px-4 py-4">
+                <ChartHeader topic={currentTopic} />
+                <VocabGrid topic={currentTopic} ratings={ratings} onRate={handleRate} onShowDetail={(item) => setSelectedItem({ item, topic: currentTopic })} showEnglish={showEnglish} />
+              </div>
+            )}
+            {activeView === 'quiz' && <QuizSection topics={TOPICS_DATA} ratings={ratings} onRate={handleRate} />}
+            {activeView === 'flashcard' && <FlashcardSection topics={TOPICS_DATA} ratings={ratings} onRate={handleRate} />}
+            {activeView === 'progress' && <ProgressSection topics={TOPICS_DATA} ratings={ratings} />}
+          </main>
+
+          {selectedItem && (
+            <DetailModal item={selectedItem.item} topic={selectedItem.topic} rating={ratings[`${selectedItem.topic.id}-${selectedItem.item.id}`]} onRate={handleRate} onClose={() => setSelectedItem(null)} />
+          )}
+
+          <footer className="bg-gray-800 text-white py-4 px-4">
+            <div className="max-w-7xl mx-auto text-center text-sm">
+              <p>KG Vocabulary Learning System • Burmese → Devanagari Transliteration</p>
+            </div>
+          </footer>
+        </div>
+      );
+    };
+
+    // Render the app
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
